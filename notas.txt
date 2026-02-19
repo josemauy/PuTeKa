@@ -1,0 +1,1 @@
+-- se debe hacer con php solo se usa javascript para las funciones
