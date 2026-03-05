@@ -45,7 +45,7 @@ $conn = $database->getConnection();
 
 $query = "SELECT usuarios.id, usuarios.nombre, usuarios.email, roles.nombre AS rol
           FROM usuarios
-          INNER JOIN roles ON usuarios.rol_id = roles.id";
+          INNER JOIN roles ON roles.nombre = roles.nombre";
 
 $stmt = $conn->prepare($query);
 $stmt->execute();

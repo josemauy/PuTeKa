@@ -3,8 +3,111 @@
 <head>
 <meta charset="UTF-8">
 <title>Préstamos - PuTeKa</title>
+
+<style>
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f4f6f9;
+    margin:0;
+    padding:0;
+}
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:auto;
+}
+
+h2{
+    text-align:center;
+    color:#333;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    margin-top:30px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+form{
+    display:grid;
+    gap:15px;
+}
+
+label{
+    font-weight:bold;
+}
+
+select,input{
+    padding:10px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+button{
+    padding:12px;
+    border:none;
+    border-radius:6px;
+    background:green;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:green;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+th{
+    background:green;
+    color:white;
+    padding:12px;
+}
+
+td{
+    padding:10px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+}
+
+tr:hover{
+    background:#f2f2f2;
+}
+
+.volver{
+    display:inline-block;
+    margin-top:20px;
+    text-decoration:none;
+    background:#28a745;
+    color:white;
+    padding:10px 15px;
+    border-radius:6px;
+}
+
+.volver:hover{
+    background:#1e7e34;
+}
+
+</style>
+
 </head>
+
 <body>
+
+<div class="container">
+
+<div class="card">
 
 <h2>Registrar Préstamo</h2>
 
@@ -55,15 +158,18 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 <label>Fecha Devolución:</label>
 <input type="date" name="fecha_devolucion" required>
 
-<button type="submit">Registrar</button>
+<button type="submit">Registrar Préstamo</button>
 
 </form>
 
-<hr>
+</div>
 
-<h2>Préstamos</h2>
+<div class="card">
 
-<table border="1">
+<h2>Lista de Préstamos</h2>
+
+<table>
+
 <thead>
 <tr>
 <th>ID</th>
@@ -107,8 +213,11 @@ echo "</tr>";
 </tbody>
 </table>
 
-<br>
-<a href="index.html">⬅ Volver al inicio</a>
+<a class="volver" href="index.html">⬅ Volver al inicio</a>
+
+</div>
+
+</div>
 
 </body>
 </html>

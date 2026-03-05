@@ -37,6 +37,90 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Usuarios</title>
+
+<style>
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f4f6f9;
+    margin:0;
+    padding:40px;
+}
+
+.container{
+    width:900px;
+    margin:auto;
+}
+
+h2{
+    color:#333;
+}
+
+form{
+    background:white;
+    padding:20px;
+    border-radius:8px;
+    box-shadow:0px 3px 10px rgba(0,0,0,0.1);
+    margin-bottom:30px;
+}
+
+input, select{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+button{
+    background:#4CAF50;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#45a049;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0px 3px 10px rgba(0,0,0,0.1);
+}
+
+th{
+    background:#4CAF50;
+    color:white;
+    padding:12px;
+}
+
+td{
+    padding:10px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+}
+
+tr:hover{
+    background:#f1f1f1;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
 <h2>Registrar Usuario</h2>
 
 <form method="POST">
@@ -51,11 +135,9 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <button type="submit">Guardar</button>
 </form>
 
-<hr>
-
 <h2>Lista de Usuarios</h2>
 
-<table border="1">
+<table>
     <tr>
         <th>ID</th>
         <th>Nombre</th>
@@ -72,3 +154,8 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </tr>
     <?php endforeach; ?>
 </table>
+
+</div>
+
+</body>
+</html>
