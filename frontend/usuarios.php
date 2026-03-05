@@ -33,16 +33,40 @@
             <th>Rol</th>
         </tr>
     </thead>
-    <tbody id="tablaUsuarios"></tbody>
+    <tbody>
+
+<?php
+
+require_once("../backend/config/database.php");
+
+$database = new Database();
+$conn = $database->getConnection();
+
+$query = "SELECT usuarios.id, usuarios.nombre, usuarios.email, roles.nombre AS rol
+          FROM usuarios
+          INNER JOIN roles ON usuarios.rol_id = roles.id";
+
+$stmt = $conn->prepare($query);
+$stmt->execute();
+
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+
+    echo "<tr>";
+    echo "<td>".$row['id']."</td>";
+    echo "<td>".$row['nombre']."</td>";
+    echo "<td>".$row['email']."</td>";
+    echo "<td>".$row['rol']."</td>";
+    echo "</tr>";
+
+}
+
+?>
+
+    </tbody>
 </table>
 
 <br>
 <a href="index.html">⬅ Volver al inicio</a>
-
-<script src="js/app.js"></script>
-<script>
-    cargar("usuarios", "tablaUsuarios");
-</script>
 
 </body>
 </html>

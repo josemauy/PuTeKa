@@ -50,3 +50,6 @@ CREATE TABLE prestamos (
     FOREIGN KEY (libro_id) REFERENCES libros(id),
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 );
+INSERT INTO categorias (id, nombre) VALUES
+(1, 'Novela'),
+(2, 'Ciencia');
