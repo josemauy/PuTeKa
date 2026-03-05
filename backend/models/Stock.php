@@ -1,19 +1,24 @@
 <?php
-class Stock {
-    private $conn;
-    private $table = "stock";
 
-    public function __construct($db) {
-        $this->conn = $db;
-    }
+require_once("../config/database.php");
 
-    public function getAll() {
-        $sql = "SELECT s.id, l.titulo, s.cantidad
-                FROM stock s
-                INNER JOIN libros l ON s.libro_id = l.id";
+$database = new Database();
+$conn = $database->getConnection();
 
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+$libro_id = $_POST['libro_id'];
+$cantidad = $_POST['cantidad'];
+
+$query = "INSERT INTO stock (libro_id, cantidad) VALUES (:libro_id, :cantidad)";
+
+$stmt = $conn->prepare($query);
+
+$stmt->bindParam(":libro_id", $libro_id);
+$stmt->bindParam(":cantidad", $cantidad);
+
+if($stmt->execute()){
+    header("Location: ../../frontend/stock.php");
+}else{
+    echo "Error al guardar";
 }
+
+?>

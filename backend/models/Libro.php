@@ -6,7 +6,7 @@ $database = new Database();
 $conn = $database->getConnection();
 
 $titulo = $_POST['titulo'];
-$autor_id = $_POST['autor_id'];
+$autor = $_POST['autor_id'];
 $categoria_id = $_POST['categoria_id'];
 
 $query = "INSERT INTO libros (titulo, autor_id, categoria_id)
@@ -15,7 +15,7 @@ $query = "INSERT INTO libros (titulo, autor_id, categoria_id)
 $stmt = $conn->prepare($query);
 
 $stmt->bindParam(":titulo", $titulo);
-$stmt->bindParam(":autor_id", $autor_id);
+$stmt->bindParam(":autor_id", $autor);
 $stmt->bindParam(":categoria_id", $categoria_id);
 
 $stmt->execute();

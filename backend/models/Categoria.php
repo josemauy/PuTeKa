@@ -1,15 +1,21 @@
 <?php
-class Categoria {
-    private $conn;
-    private $table = "categorias";
 
-    public function __construct($db) {
-        $this->conn = $db;
-    }
+require_once("../config/database.php");
 
-    public function getAll() {
-        $stmt = $this->conn->prepare("SELECT * FROM {$this->table}");
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+$database = new Database();
+$conn = $database->getConnection();
+
+$nombre = $_POST['nombre'];
+
+$query = "INSERT INTO categorias (nombre) VALUES (:nombre)";
+
+$stmt = $conn->prepare($query);
+$stmt->bindParam(":nombre", $nombre);
+
+if($stmt->execute()){
+    header("Location: ../../frontend/categorias.php");
+}else{
+    echo "Error al guardar categoría";
 }
+
+?>
