@@ -12,7 +12,7 @@
 
     <input type="text" name="titulo" placeholder="Título" required>
 
-    <input type="text" name="autor_id" placeholder="Autor_id" required>
+    <input type="text" name="autor" placeholder="Autor" required>
 
 <select name="categoria_id" required>
 

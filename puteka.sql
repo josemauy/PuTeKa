@@ -29,7 +29,7 @@ CREATE TABLE libros (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(150),
     categoria_id INT,
-    autor_id INT,
+    autor_id VARCHAR(150),
     FOREIGN KEY (categoria_id) REFERENCES categorias(id),
     FOREIGN KEY (autor_id) REFERENCES usuarios(id)
 );

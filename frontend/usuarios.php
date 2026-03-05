@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Usuarios - PuTeKa</title>
 </head>
+
 <body>
 
 <h2>Registrar Usuario</h2>
