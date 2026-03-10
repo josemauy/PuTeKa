@@ -1,126 +1,120 @@
+<?php
+
+require_once("../backend/config/database.php");
+
+$database = new Database();
+$conn = $database->getConnection();
+
+/* INSERTAR STOCK */
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+    $libro_id = $_POST["libro_id"];
+    $cantidad = $_POST["cantidad"];
+
+    $query = "INSERT INTO stock (libro_id, cantidad)
+              VALUES (:libro_id, :cantidad)";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(":libro_id", $libro_id);
+    $stmt->bindParam(":cantidad", $cantidad);
+    $stmt->execute();
+
+    echo "<p class='success'>Stock agregado correctamente</p>";
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Categorías - PuTeKa</title>
+
+<title>Stock PuTeKa</title>
 
 <style>
 
-*{
-    box-sizing: border-box;
-}
-
 body{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg,#eef2f7,#dce6f2);
-    margin:0;
+font-family: Arial;
+background:#f4f6f9;
+margin:0;
+padding:0;
 }
-
-/* HEADER */
-
-header{
-    background:green;
-    color:white;
-    padding:20px;
-    text-align:center;
-    font-size:22px;
-    font-weight:bold;
-    letter-spacing:1px;
-}
-
-/* CONTENEDOR */
 
 .container{
-    width:85%;
-    margin:auto;
-    margin-top:40px;
+width:800px;
+margin:auto;
+margin-top:40px;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0px 0px 10px rgba(0,0,0,0.1);
 }
 
-/* TITULOS */
-
-h2{
-    color:#2c3e50;
-    margin-bottom:15px;
+h1{
+text-align:center;
+color:#2c3e50;
 }
-
-/* FORMULARIO */
 
 form{
-    background:white;
-    padding:25px;
-    border-radius:10px;
-    box-shadow:0 6px 15px rgba(0,0,0,0.08);
-    margin-bottom:40px;
+margin-bottom:30px;
 }
 
-input{
-    padding:12px;
-    width:280px;
-    border:1px solid #ccc;
-    border-radius:6px;
-    font-size:14px;
+label{
+font-weight:bold;
 }
 
-/* BOTON */
+select,input{
+width:100%;
+padding:8px;
+margin-top:5px;
+margin-bottom:15px;
+border:1px solid #ccc;
+border-radius:5px;
+}
 
 button{
-    padding:12px 18px;
-    border:none;
-    background:green;
-    color:white;
-    border-radius:6px;
-    font-size:14px;
-    cursor:pointer;
-    transition:0.3s;
+background:#3498db;
+color:white;
+border:none;
+padding:10px;
+width:100%;
+border-radius:5px;
+cursor:pointer;
 }
 
 button:hover{
-    background:#2980b9;
-    transform:scale(1.05);
+background:#2980b9;
 }
-
-/* TABLA */
 
 table{
-    width:100%;
-    border-collapse:collapse;
-    background:white;
-    border-radius:10px;
-    overflow:hidden;
-    box-shadow:0 6px 15px rgba(0,0,0,0.08);
+width:100%;
+border-collapse:collapse;
 }
 
-th{
-    background:green;
-    color:white;
-    padding:14px;
+table th{
+background:#3498db;
+color:white;
+padding:10px;
 }
 
-td{
-    padding:12px;
-    text-align:center;
-    border-bottom:1px solid #eee;
+table td{
+padding:10px;
+text-align:center;
+border-bottom:1px solid #ddd;
 }
 
-tr:hover{
-    background:#f4f7fb;
+.success{
+background:#2ecc71;
+color:white;
+padding:10px;
+border-radius:5px;
+text-align:center;
 }
-
-/* BOTON VOLVER */
 
 .volver{
-    display:inline-block;
-    margin-top:25px;
-    text-decoration:none;
-    color:white;
-    background:#27ae60;
-    padding:12px 18px;
-    border-radius:6px;
-    transition:0.3s;
-}
-
-.volver:hover{
-    background:#1e8449;
+display:block;
+margin-top:20px;
+text-align:center;
 }
 
 </style>
@@ -129,60 +123,75 @@ tr:hover{
 
 <body>
 
-<header>
-📚 Sistema Biblioteca - PuTeKa
-</header>
-
 <div class="container">
 
-<h2>Registrar Categoría</h2>
+<h1>Inventario de Libros</h1>
 
-<form action="../backend/models/Categoria.php" method="POST">
-    <input type="text" name="nombre" placeholder="Nombre de la categoría" required>
-    <button type="submit">Guardar</button>
-</form>
+<h3>Agregar Stock</h3>
 
-<h2>Categorías registradas</h2>
+<form method="POST">
 
-<table>
+<label>Libro</label>
 
-<thead>
-<tr>
-<th>ID</th>
-<th>Nombre</th>
-</tr>
-</thead>
-
-<tbody>
+<select name="libro_id">
 
 <?php
 
-require_once("../backend/config/database.php");
-
-$database = new Database();
-$conn = $database->getConnection();
-
-$query = "SELECT id, nombre FROM categorias";
-
+$query = "SELECT * FROM libros";
 $stmt = $conn->prepare($query);
 $stmt->execute();
 
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
-    echo "<tr>";
-    echo "<td>".$row['id']."</td>";
-    echo "<td>".$row['nombre']."</td>";
-    echo "</tr>";
+echo "<option value='".$row['id']."'>".$row['titulo']."</option>";
 
 }
 
 ?>
 
-</tbody>
+</select>
+
+<label>Cantidad</label>
+<input type="number" name="cantidad" required>
+
+<button type="submit">Guardar Stock</button>
+
+</form>
+
+<h3>Inventario Actual</h3>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Libro</th>
+<th>Cantidad</th>
+</tr>
+
+<?php
+
+$query = "SELECT stock.id, libros.titulo, stock.cantidad
+          FROM stock
+          INNER JOIN libros ON stock.libro_id = libros.id";
+
+$stmt = $conn->prepare($query);
+$stmt->execute();
+
+while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+
+echo "<tr>";
+echo "<td>".$row['id']."</td>";
+echo "<td>".$row['titulo']."</td>";
+echo "<td>".$row['cantidad']."</td>";
+echo "</tr>";
+
+}
+
+?>
 
 </table>
 
-<a class="volver" href="index.html">⬅ Volver al inicio</a>
+<a class="volver" href="index.html">Volver al inicio</a>
 
 </div>
 

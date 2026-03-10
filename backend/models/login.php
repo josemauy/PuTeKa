@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($user) {
 
-        $rol_id = $user['id_rol'];
+        $rol_id = $user['rol_id'];
 
         // Administrador
         if ($rol_id == 1 && $password == "admin") {
@@ -44,11 +44,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         else {
-            echo "Contraseña incorrecta";
+            echo "<p class='error'></p>";
         }
 
     } else {
-        echo "Usuario no encontrado";
+        echo "<p class='error'>Usuario no encontrado</p>";
     }
 }
 ?>
@@ -56,30 +56,108 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>Login PuTeKa</title>
+
+<style>
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background: green;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:0;
+}
+
+.login-box{
+    background:white;
+    padding:40px;
+    width:350px;
+    border-radius:10px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    text-align:center;
+}
+
+h2{
+    margin-bottom:25px;
+    color:#333;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    margin-bottom:20px;
+    border-radius:5px;
+    border:1px solid #ccc;
+    font-size:14px;
+}
+
+input:focus{
+    border-color:#2a5298;
+    outline:none;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    background:green;
+    color:white;
+    font-size:16px;
+    border-radius:5px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#1e3c72;
+}
+
+.info{
+    margin-top:20px;
+    font-size:13px;
+    color:#555;
+}
+
+.error{
+    color:red;
+    text-align:center;
+}
+
+</style>
+
 </head>
 
 <body>
 
-<h2>Ingreso al sistema PuTeKa</h2>
+<div class="login-box">
+
+<h2>📚 PuTeKa</h2>
 
 <form method="POST">
 
-<label>Usuario</label><br>
-<input type="text" name="usuario" required><br><br>
+<label>Usuario</label>
+<input type="text" name="usuario" required>
 
-<label>Contraseña</label><br>
-<input type="password" name="password" required><br><br>
+<label>Contraseña</label>
+<input type="password" name="password" required>
 
 <button type="submit">Ingresar</button>
 
 </form>
 
-<br><br>
+<div class="info">
 
 <p><b>Información:</b></p>
-<p>Usuarios y empleados usan la contraseña por defecto: <b>biblioteca</b></p>
-<p>Administradores usan la contraseña: <b>admin</b></p>
+<p>Usuarios y empleados usan: <b>biblioteca</b></p>
+<p>Administradores usan: <b>admin</b></p>
+
+</div>
+
+</div>
 
 </body>
 </html>
