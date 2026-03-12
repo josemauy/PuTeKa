@@ -146,7 +146,9 @@ button:hover{
 <input type="password" name="password" required>
 
 <button type="submit">Ingresar</button>
-
+<button type="button" onclick="window.location='registro.php'" style="background:#555;margin-top:10px;">
+Registrarse
+</button>
 </form>
 
 <div class="info">

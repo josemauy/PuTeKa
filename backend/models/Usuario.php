@@ -154,8 +154,9 @@ tr:hover{
     </tr>
     <?php endforeach; ?>
 </table>
-<a class="volver" href="index.html">⬅ Volver al inicio</a>
+<a class="volver" href="index.php">⬅ Volver al inicio</a>
 </div>
 
 </body>
 </html>
+

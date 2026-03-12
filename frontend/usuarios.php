@@ -65,7 +65,17 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
     </tbody>
 </table>
-
+<button style="
+background:red;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:5px;
+cursor:pointer;
+"
+onclick="window.location='../backend/models/login.php'">
+Cerrar sesión
+</button>
 <br>
 <a href="index.html">⬅ Volver al inicio</a>
 

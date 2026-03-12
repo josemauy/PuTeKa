@@ -214,7 +214,17 @@ echo "</tr>";
 </table>
 
 <a class="volver" href="index.html">⬅ Volver al inicio</a>
-
+<button style="
+background:red;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:5px;
+cursor:pointer;
+"
+onclick="window.location='../backend/models/login.php'">
+Cerrar sesión
+</button>
 </div>
 
 </div>

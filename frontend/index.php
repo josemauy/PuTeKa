@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>PuTeKa - Inicio</title>
+
+    <style>
+
+        body{
+            margin:0;
+            font-family: Arial, Helvetica, sans-serif;
+            background:#f4f6f9;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+        }
+
+        .container{
+            background:white;
+            padding:40px;
+            border-radius:10px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.2);
+            text-align:center;
+            width:300px;
+        }
+
+        h1{
+            margin-bottom:30px;
+            color:#333;
+        }
+
+        a{
+            display:block;
+            text-decoration:none;
+            background:#4CAF50;
+            color:white;
+            padding:12px;
+            margin:10px 0;
+            border-radius:6px;
+            transition:0.3s;
+            font-weight:bold;
+        }
+
+        a:hover{
+            background:#45a049;
+            transform:scale(1.05);
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📚 PuTeKa</h1>
+
+<a href="../backend/models/Usuario.php">Usuarios</a>
+<a href="libros.php">Libros</a>
+<a href="categorias.php">Categorías</a>
+<a href="stock.php">Stock</a>
+<a href="prestamos.php">Préstamos</a>
+<button style="
+background:red;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:5px;
+cursor:pointer;
+"
+onclick="window.location='../backend/models/login.php'">
+Cerrar sesión
+</button>
+</div>
+
+</body>
+</html>
